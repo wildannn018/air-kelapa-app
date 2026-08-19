@@ -1,105 +1,227 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Air Kelapa Muda Segar - Minuman Sehat dan Segar">
-    <meta name="theme-color" content="#10b981">
-    <title>Air Kelapa Muda Segar</title>
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
-    <link rel="apple-touch-icon" href="icon-192.png">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        .container {
-            background: white;
-            border-radius: 20px;
-            padding: 40px 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            max-width: 500px;
-            width: 100%;
-            text-align: center;
-        }
-        h1 {
-            color: #059669;
-            margin-bottom: 20px;
-            font-size: 2em;
-        }
-        .emoji {
-            font-size: 4em;
-            margin-bottom: 20px;
-        }
-        p {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-        .button {
-            background: #10b981;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 10px;
-            font-size: 1em;
-            cursor: pointer;
-            transition: background 0.3s;
-            margin: 10px 5px;
-        }
-        .button:hover {
-            background: #059669;
-        }
-        .install-btn {
-            display: none;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🥥 Air Kelapa Muda - OPEN PO</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#00c16a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --main:#00b86b;
+    --main2:#00c16a;
+    --light:#9fffcf;
+    --glass-bg: rgba(255,255,255,0.10);
+    --glass-border: rgba(255,255,255,0.25);
+    --dark: #04140c;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:
+      linear-gradient(rgba(2,20,12,0.75), rgba(2,20,12,0.88)),
+      url('https://images.unsplash.com/photo-1580910051074-3eb694886505?q=80&w=1600&auto=format&fit=crop')
+      center/cover fixed no-repeat;
+    color:#eafff2;
+    min-height:100vh;
+    padding-bottom:40px;
+  }
+  a{text-decoration:none;color:inherit;}
+  .navbar{
+    position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;
+    padding:14px 20px;background:rgba(4,20,12,0.55);backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--glass-border);
+  }
+  .brand{font-weight:800;font-size:1.2rem;color:var(--light);display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;}
+  .cart-btn{position:relative;background:var(--glass-bg);border:1px solid var(--glass-border);backdrop-filter:blur(10px);
+    color:#fff;padding:10px 16px;border-radius:50px;cursor:pointer;font-weight:600;font-size:0.95rem;
+    display:flex;align-items:center;gap:6px;transition:.25s;}
+  .cart-btn:hover{background:var(--main);border-color:var(--main);}
+  .cart-count{background:#ff4757;color:#fff;font-size:0.7rem;font-weight:700;padding:2px 7px;border-radius:50px;
+    position:absolute;top:-6px;right:-6px;}
+  .hero{text-align:center;padding:70px 20px 50px;max-width:720px;margin:0 auto;}
+  .badge{display:inline-block;background:linear-gradient(135deg,var(--main),var(--main2));padding:8px 18px;
+    border-radius:50px;font-weight:700;font-size:0.85rem;box-shadow:0 4px 20px rgba(0,184,107,0.5);margin-bottom:20px;animation:pulse 2.2s infinite;}
+  @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
+  .hero h1{font-size:2.2rem;font-weight:800;background:linear-gradient(135deg,#ffffff,var(--light));
+    -webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:14px;line-height:1.25;}
+  .hero p{color:#d6ffe9;font-size:1rem;font-weight:300;line-height:1.6;opacity:0.9;}
+  .section-title{text-align:center;font-size:1.5rem;font-weight:700;margin:10px 0 24px;color:var(--light);}
+  .menu-wrap{max-width:900px;margin:0 auto;padding:30px 20px;}
+  .menu-grid{display:grid;grid-template-columns:1fr;gap:20px;}
+  @media(min-width:640px){.menu-grid{grid-template-columns:1fr 1fr;}}
+  .menu-card{background:var(--glass-bg);border:1px solid var(--glass-border);backdrop-filter:blur(16px);
+    border-radius:20px;padding:24px;box-shadow:0 8px 32px rgba(0,0,0,0.35);transition:.3s;display:flex;flex-direction:column;}
+  .menu-card:hover{transform:translateY(-6px);border-color:var(--main);box-shadow:0 12px 40px rgba(0,184,107,0.35);}
+  .menu-card h3{font-size:1.15rem;margin-bottom:8px;}
+  .menu-card p{color:#cdf6e2;font-size:0.88rem;font-weight:300;line-height:1.5;flex-grow:1;margin-bottom:14px;}
+  .menu-price{font-size:1.3rem;font-weight:700;color:var(--light);margin-bottom:16px;}
+  .add-btn{background:linear-gradient(135deg,var(--main),var(--main2));border:none;color:#fff;padding:12px;
+    border-radius:12px;font-weight:600;font-size:0.9rem;cursor:pointer;transition:.25s;}
+  .add-btn:hover{filter:brightness(1.1);transform:scale(1.02);}
+  .info-section{max-width:700px;margin:40px auto;padding:26px 24px;background:var(--glass-bg);border:1px solid var(--glass-border);
+    backdrop-filter:blur(14px);border-radius:18px;text-align:center;}
+  .info-section h3{color:var(--light);margin-bottom:12px;font-size:1.15rem;}
+  .info-section p{font-size:0.9rem;font-weight:300;line-height:1.7;color:#dbfff0;}
+  .info-icons{display:flex;justify-content:center;gap:30px;margin-top:16px;flex-wrap:wrap;}
+  .info-icons div{font-size:0.82rem;color:#cdf6e2;}
+  .info-icons span{display:block;font-size:1.6rem;margin-bottom:4px;}
+  footer{text-align:center;padding:30px 20px 10px;font-size:0.78rem;color:#8fe6bd;opacity:0.8;}
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;opacity:0;pointer-events:none;transition:.3s;}
+  .overlay.active{opacity:1;pointer-events:auto;}
+  .cart-sidebar{position:fixed;top:0;right:-420px;width:100%;max-width:400px;height:100%;background:rgba(4,22,14,0.85);
+    backdrop-filter:blur(22px);border-left:1px solid var(--glass-border);z-index:201;transition:right .35s ease;display:flex;flex-direction:column;}
+  .cart-sidebar.active{right:0;}
+  .cart-header{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--glass-border);}
+  .cart-header h2{font-size:1.1rem;color:var(--light);}
+  .close-btn{background:none;border:none;color:#fff;font-size:1.4rem;cursor:pointer;line-height:1;}
+  .cart-body{flex:1;overflow-y:auto;padding:16px 20px;}
+  .cart-empty{text-align:center;color:#a9e9c8;font-size:0.9rem;margin-top:40px;font-weight:300;}
+  .cart-item{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.06);
+    border:1px solid var(--glass-border);border-radius:12px;padding:12px;margin-bottom:10px;}
+  .cart-item-info h4{font-size:0.88rem;margin-bottom:4px;}
+  .cart-item-info span{font-size:0.8rem;color:var(--light);font-weight:600;}
+  .qty-control{display:flex;align-items:center;gap:8px;}
+  .qty-control button{width:26px;height:26px;border-radius:50%;border:1px solid var(--glass-border);
+    background:rgba(255,255,255,0.1);color:#fff;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  .qty-control button:hover{background:var(--main);}
+  .cart-total{display:flex;justify-content:space-between;font-weight:700;font-size:1.05rem;margin-top:6px;
+    padding-top:8px;border-top:1px dashed var(--glass-border);}
+  .admin-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:300;display:none;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto;}
+  .admin-overlay.active{display:flex;}
+  .admin-panel{width:100%;max-width:900px;background:rgba(4,22,14,0.92);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:18px;padding:24px;}
+  .checkout-form{margin-top:16px;display:none;flex-direction:column;gap:10px;}
+  .checkout-form.active{display:flex;}
+  .checkout-form input, .checkout-form textarea{background:rgba(255,255,255,0.08);border:1px solid var(--glass-border);
+    border-radius:10px;padding:10px 12px;color:#fff;font-size:0.85rem;outline:none;font-family:'Poppins',sans-serif;}
+  .cart-footer{padding:16px 20px;border-top:1px solid var(--glass-border);}
+  .toggle-checkout-btn{width:100%;background:rgba(255,255,255,0.1);border:1px solid var(--glass-border);color:#fff;padding:12px;border-radius:12px;font-weight:600;cursor:pointer;margin-bottom:10px;font-size:0.88rem;}
+  .wa-btn{width:100%;background:linear-gradient(135deg,var(--main),var(--main2));border:none;color:#fff;padding:13px;border-radius:12px;font-weight:700;font-size:0.92rem;cursor:pointer;}
+  .install-prompt{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--glass-bg);backdrop-filter:blur(20px);
+    border:1px solid var(--glass-border);padding:14px 20px;border-radius:16px;z-index:400;display:none;gap:10px;align-items:center;}
+  .install-prompt button{background:var(--main);border:none;color:#fff;padding:8px 14px;border-radius:10px;font-weight:600;cursor:pointer;}
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="emoji">🥥</div>
-        <h1>Air Kelapa Muda Segar</h1>
-        <p>Minuman alami yang menyegarkan dan menyehatkan. Nikmati kesegaran kelapa muda langsung dari alam.</p>
-        <button class="button install-btn" id="installBtn">Instal Aplikasi</button>
-        <button class="button" onclick="alert('Hubungi kami untuk pemesanan!')">Pesan Sekarang</button>
+
+<nav class="navbar">
+  <div class="brand" id="brandLogo">🥥 Kelapa Muda</div>
+  <button class="cart-btn" onclick="openCart()">🛒 Keranjang<span class="cart-count" id="cartCount" style="display:none;">0</span></button>
+</nav>
+
+<section class="hero">
+  <span class="badge">🥥 OPEN PO AIR KELAPA MUDA</span>
+  <h1>Segernya Air Kelapa Muda Asli, Langsung dari Pohonnya</h1>
+  <p>Diambil fresh, tanpa pengawet, langsung diantar ke tanganmu. Yuk pesan sebelum kehabisan slot PO minggu ini!</p>
+</section>
+
+<div class="menu-wrap">
+  <h2 class="section-title">🥤 Menu Pilihan</h2>
+  <div class="menu-grid" id="menuGrid"></div>
+</div>
+
+<div class="info-section">
+  <h3>📅 Jadwal PO & Pengantaran</h3>
+  <p>Pre-order dibuka setiap <strong>Sabtu - Minggu</strong>, dan pesanan akan diantar setiap hari <strong>Senin</strong>.</p>
+</div>
+
+<footer>Development by Wildan</footer>
+
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header"><h2>🛒 Keranjang Kamu</h2><button class="close-btn" onclick="closeCart()">&times;</button></div>
+  <div class="cart-body" id="cartBody"><p class="cart-empty">Keranjang masih kosong 🥲</p></div>
+  <div class="cart-footer">
+    <div class="cart-total"><span>Total</span><span id="cartTotal">Rp0</span></div>
+    <button class="toggle-checkout-btn" id="toggleCheckoutBtn" onclick="toggleCheckout()">📋 Isi Data Pemesanan</button>
+    <div class="checkout-form" id="checkoutForm">
+      <input type="text" id="custName" placeholder="Nama kamu">
+      <input type="tel" id="custPhone" placeholder="08xxxxxxxxxx">
+      <textarea id="custAddress" rows="2" placeholder="Alamat lengkap"></textarea>
+      <button class="wa-btn" onclick="orderViaWhatsApp()">📲 Pesan via WhatsApp</button>
     </div>
+  </div>
+</div>
 
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js').then(registration => {
-                console.log('Service Worker registered:', registration);
-            }).catch(error => {
-                console.log('Service Worker registration failed:', error);
-            });
-        }
+<div class="install-prompt" id="installPrompt">
+  <span>Pasang Aplikasi?</span>
+  <button onclick="doInstall()">Install</button>
+  <button onclick="document.getElementById('installPrompt').style.display='none'">X</button>
+</div>
 
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            document.getElementById('installBtn').style.display = 'block';
-        });
+<script>
+// ========== PWA REGISTER ==========
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
+}
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  setTimeout(()=>{ document.getElementById('installPrompt').style.display='flex'; }, 3000);
+});
+function doInstall(){ deferredPrompt.prompt(); document.getElementById('installPrompt').style.display='none'; }
 
-        document.getElementById('installBtn').addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                console.log(`User response to the install prompt: ${outcome}`);
-                deferredPrompt = null;
-            }
-        });
-    </script>
+// ========== ADMIN KLIK 5X ==========
+let brandClicks=0,clickTimer=null;
+document.getElementById('brandLogo').addEventListener('click',()=>{
+  brandClicks++; clearTimeout(clickTimer);
+  clickTimer=setTimeout(()=>{brandClicks=0;},800);
+  if(brandClicks>=5){ brandClicks=0; alert("Admin Panel Coming Soon"); }
+});
+
+// ========== DATA & CART ==========
+const menuItems = [
+  {id:1, nama:'🥥 Kelapa Original', harga:14000, desc:'Air kelapa segar tanpa campuran.'},
+  {id:2, nama:'🥥 Kelapa + Daging', harga:14000, desc:'Lebih nikmat dengan daging kelapa muda.'}
+];
+const WA_NUMBER = "6283123920170";
+let cart = JSON.parse(localStorage.getItem('cart_kelapa')) || [];
+
+function formatRupiah(angka){ return "Rp" + angka.toLocaleString('id-ID'); }
+const menuGrid = document.getElementById('menuGrid');
+menuItems.forEach(item=>{
+  const card = document.createElement('div');
+  card.className = 'menu-card';
+  card.innerHTML = `<h3>${item.nama}</h3><p>${item.desc}</p><div class="menu-price">${formatRupiah(item.harga)}</div><button class="add-btn" onclick="addToCart(${item.id})">+ Tambah</button>`;
+  menuGrid.appendChild(card);
+});
+
+function saveCart(){ localStorage.setItem('cart_kelapa', JSON.stringify(cart)); renderCart(); }
+function addToCart(id){ const item = menuItems.find(m=>m.id===id); const existing = cart.find(c=>c.id===id);
+  if(existing){ existing.qty += 1; } else { cart.push({id:item.id, nama:item.nama, harga:item.harga, qty:1}); } saveCart(); openCart(); }
+function changeQty(id, delta){ const item = cart.find(c=>c.id===id); if(!item) return; item.qty += delta; if(item.qty <= 0){ cart = cart.filter(c=>c.id!==id); } saveCart(); }
+function renderCart(){ const cartBody = document.getElementById('cartBody'); const cartCount = document.getElementById('cartCount'); const cartTotal = document.getElementById('cartTotal');
+  if(cart.length === 0){ cartBody.innerHTML = '<p class="cart-empty">Keranjang masih kosong 🥲</p>'; cartCount.style.display = 'none'; cartTotal.textContent = formatRupiah(0); return; }
+  let totalQty = 0; let totalHarga = 0; let html = '';
+  cart.forEach(item=>{ totalQty += item.qty; totalHarga += item.qty * item.harga; html += `<div class="cart-item"><div class="cart-item-info"><h4>${item.nama}</h4><span>${formatRupiah(item.harga)}</span></div><div class="qty-control"><button onclick="changeQty(${item.id}, -1)">-</button><span>${item.qty}</span><button onclick="changeQty(${item.id}, 1)">+</button></div></div>`; });
+  cartBody.innerHTML = html; cartCount.style.display = 'inline-block'; cartCount.textContent = totalQty; cartTotal.textContent = formatRupiah(totalHarga); }
+
+function openCart(){ document.getElementById('cartSidebar').classList.add('active'); document.getElementById('overlay').classList.add('active'); }
+function closeCart(){ document.getElementById('cartSidebar').classList.remove('active'); document.getElementById('overlay').classList.remove('active'); }
+function toggleCheckout(){ const form = document.getElementById('checkoutForm'); const btn = document.getElementById('toggleCheckoutBtn');
+  form.classList.toggle('active'); btn.textContent = form.classList.contains('active') ? '📋 Tutup Form Data' : '📋 Isi Data Pemesanan'; }
+
+function orderViaWhatsApp(){
+  if(cart.length===0) return alert("Keranjang kosong!");
+  const nama = document.getElementById('custName').value.trim();
+  const phone = document.getElementById('custPhone').value.trim();
+  const alamat = document.getElementById('custAddress').value.trim();
+  if(!nama || !phone || !alamat) return alert("Lengkapi Nama, No HP, dan Alamat dulu ya!");
+  let pesan = `*PESANAN AIR KELAPA MUDA*%0A%0A`;
+  cart.forEach(item=>{ pesan += `${item.nama} x${item.qty} = ${formatRupiah(item.harga*item.qty)}%0A`; });
+  pesan += `%0A*Total: ${document.getElementById('cartTotal').textContent}*%0A%0A`;
+  pesan += `*Data Pemesan:*%0ANama: ${nama}%0ANo: ${phone}%0AAlamat: ${alamat}`;
+  
+  // FIX BUAT IPHONE + ANDROID
+  window.location.href = `https://wa.me/${WA_NUMBER}?text=${pesan}`;
+  cart=[]; saveCart(); closeCart();
+}
+renderCart();
+</script>
 </body>
 </html>
