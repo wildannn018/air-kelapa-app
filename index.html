@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Air Kelapa Muda</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
 body{background:#e8fff1;color:white}
 .navbar{position:fixed;top:20px;right:20px;z-index:1000;display:flex;gap:10px}
 .nav-btn{background:#00c16a;color:white;padding:14px 20px;border-radius:999px;font-weight:700;border:none;cursor:pointer}
-.hero{min-height:100vh;background:linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.55)),url('https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=1400&auto=format&fit=crop');background-size:cover;padding:100px 20px}
+.hero{min-height:100vh;background:linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.55)),url('https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=1400');background-size:cover;padding:100px 20px}
 .glass{max-width:1100px;margin:auto;background:rgba(255,255,255,0.12);backdrop-filter:blur(10px);border-radius:30px;padding:50px}
 .menu-box{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
 .card{background:rgba(255,255,255,0.14);border-radius:24px;padding:25px}
@@ -21,11 +21,10 @@ body{background:#e8fff1;color:white}
 .modal-big{width:95%;max-width:1000px;right:-100%;left:50%;transform:translateX(-50%);height:90vh;top:5vh;border-radius:20px}
 .input{width:100%;padding:12px;margin:8px 0;border-radius:10px;border:none;background:rgba(255,255,255,0.15);color:white}
 .order-card{background:rgba(255,255,255,0.08);padding:15px;border-radius:15px;margin:10px 0}
-.status-badge{padding:6px 12px;border-radius:20px;font-size:12px;font-weight:600}
-.status-1{background:#ff9800}.status-2{background:#2196f3}.status-3{background:#4caf50}
 .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);display:none;z-index:1999}
 .overlay.active{display:block}
 .setting-box{background:rgba(255,0,0,0.1);padding:15px;border-radius:12px;margin:15px 0}
+.debug{font-size:11px;color:#ff9800;margin-top:5px}
 </style>
 </head>
 <body>
@@ -35,180 +34,110 @@ body{background:#e8fff1;color:white}
   <button class="nav-btn" onclick="toggleCart()">🛒 <span id="cartCount">0</span></button>
 </div>
 
-<section class="hero">
-  <div class="glass">
-    <h1>AIR KELAPA MUDA 🥥</h1>
-    <p>OPEN PO Sabtu-Minggu | Pengantaran Senin</p>
-    <div class="menu-box" id="menuBox"></div>
-  </div>
-</section>
-
+<section class="hero"><div class="glass"><h1>AIR KELAPA MUDA 🥥</h1><div class="menu-box" id="menuBox"></div></div></section>
 <div class="overlay" id="overlay" onclick="closeAll()"></div>
 
-<!-- KERANJANG -->
-<div class="modal" id="cartModal">
-  <h2>🛒 Keranjang</h2><div id="cartItems">Kosong</div>
-  <h3 id="cartTotal" style="display:none"></h3>
-  <div id="checkoutForm" style="display:none">
-    <input class="input" id="nama" placeholder="Nama">
-    <input class="input" id="nohp" placeholder="No HP 08xxx">
-    <input class="input" id="alamat" placeholder="Alamat">
-    <textarea class="input" id="catatan" placeholder="Catatan"></textarea>
-    <div style="background:rgba(0,255,150,0.1);padding:15px;border-radius:12px">
-      <label><input type="radio" name="bayar" value="Cash" checked onchange="toggleDana()"> Cash</label><br>
-      <label><input type="radio" name="bayar" value="DANA" onchange="toggleDana()"> DANA 083123920170</label>
-      <div id="danaUpload" style="display:none"><input type="file" id="bukti" class="input"></div>
-    </div>
-    <button class="btn" style="background:#ff5722" onclick="checkout()">Pesan WA</button>
-  </div>
-</div>
+<div class="modal" id="cartModal"><h2>🛒 Keranjang</h2><div id="cartItems">Kosong</div><h3 id="cartTotal" style="display:none"></h3><div id="checkoutForm" style="display:none"><input class="input" id="nama" placeholder="Nama"><input class="input" id="nohp" placeholder="No HP 08xxx"><input class="input" id="alamat" placeholder="Alamat"><button class="btn" style="background:#ff5722" onclick="checkout()">Pesan WA</button></div></div>
 
-<!-- CEK RESI -->
-<div class="modal" id="trackingModal">
-  <h2>📦 Cek Resi</h2>
-  <input class="input" id="inputResi" placeholder="ID Pesanan: AKM...">
-  <button class="btn" onclick="cekResi()">Cek</button>
-  <div id="hasilResi"></div>
-</div>
+<div class="modal" id="trackingModal"><h2>📦 Cek Resi</h2><input class="input" id="inputResi" placeholder="ID Pesanan: AKM..."><button class="btn" onclick="cekResi()">Cek</button><div id="hasilResi"></div></div>
 
-<!-- PANEL ADMIN RAHASIA -->
 <div class="modal modal-big" id="adminModal">
   <h2>⚙️ Panel Admin</h2>
   <div id="loginAdmin">
     <h3>Login Admin</h3>
-    <input class="input" id="adminUser" placeholder="Username">
-    <input class="input" id="adminPass" type="password" placeholder="Password">
+    <input class="input" id="adminUser" placeholder="Username" value="admin">
+    <input class="input" id="adminPass" type="password" placeholder="Password" value="1234">
     <button class="btn" onclick="loginAdmin()">Masuk</button>
+    <button class="btn" style="background:#ff9800;margin-top:10px" onclick="forceReset()">Force Reset Password</button>
+    <p id="debugText" class="debug"></p>
   </div>
   <div id="dashboardAdmin" style="display:none">
     <div class="setting-box">
-      <h4>🔐 Ganti Password Admin</h4>
+      <h4>🔐 Ganti Password</h4>
       <input class="input" id="newUser" placeholder="Username Baru">
       <input class="input" id="newPass" type="password" placeholder="Password Baru">
       <button class="btn" style="background:#2196f3" onclick="gantiPassword()">Simpan</button>
     </div>
-    <h3>Daftar Pesanan Masuk</h3>
-    <div id="listPesanan"></div>
+    <h3>Daftar Pesanan</h3><div id="listPesanan"></div>
     <button class="btn" style="background:#555" onclick="logoutAdmin()">Logout</button>
   </div>
 </div>
 
 <script>
-const MENU = [
-  {id:1, nama:'🥥 Kelapa Original', harga:14000},
-  {id:2, nama:'🥥 Kelapa + Daging', harga:14000}
-];
+const MENU = [{id:1, nama:'🥥 Kelapa Original', harga:14000},{id:2, nama:'🥥 Kelapa + Daging', harga:14000}];
+const DEFAULT_ADMIN = {user:'admin', pass:'1234'}; // PASSWORD DEFAULT DI SINI
 
-let adminSetting = JSON.parse(localStorage.getItem('adminSetting')) || {user:'admin', pass:'1234'};
+function getAdmin(){
+  try{
+    let data = localStorage.getItem('adminSetting');
+    return data ? JSON.parse(data) : DEFAULT_ADMIN;
+  }catch(e){ return DEFAULT_ADMIN; }
+}
+let adminSetting = getAdmin();
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let orders = JSON.parse(localStorage.getItem('orders')) || [];
 const WA_ADMIN = '6283123920170';
 
 function formatRupiah(a){ return 'Rp' + a.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); }
 
-function renderMenu(){
-  menuBox.innerHTML = MENU.map(i=>`
-    <div class="card"><h3>${i.nama}</h3><div class="price">${formatRupiah(i.harga)}</div>
-    <button class="btn" onclick="addToCart(${i.id})">+ Keranjang</button></div>`).join('');
-}
-
-function addToCart(id){
-  const item = MENU.find(m=>m.id===id);
-  const exist = cart.find(c=>c.id===id); if(exist) exist.qty++; else cart.push({...item, qty:1});
-  saveCart(); toggleCart();
-}
+function renderMenu(){ menuBox.innerHTML = MENU.map(i=>`<div class="card"><h3>${i.nama}</h3><div class="price">${formatRupiah(i.harga)}</div><button class="btn" onclick="addToCart(${i.id})">+ Keranjang</button></div>`).join(''); }
+function addToCart(id){ const item = MENU.find(m=>m.id===id); const exist = cart.find(c=>c.id===id); if(exist) exist.qty++; else cart.push({...item, qty:1}); saveCart(); toggleCart(); }
 function updateQty(id, c){ const i=cart.find(x=>x.id===id); i.qty+=c; if(i.qty<=0) cart=cart.filter(x=>x.id!==id); saveCart(); }
 function saveCart(){ localStorage.setItem('cart', JSON.stringify(cart)); renderCart(); }
-function renderCart(){
-  cartCount.innerText = cart.reduce((a,b)=>a+b.qty,0);
-  cartItems.innerHTML = cart.length? cart.map(i=>`
-    <div style="display:flex;justify-content:space-between;margin:10px 0">
-      <div>${i.nama}<br>${formatRupiah(i.harga)}</div>
-      <div><button onclick="updateQty(${i.id},-1)">-</button> ${i.qty} <button onclick="updateQty(${i.id},1)">+</button></div>
-    </div>`).join('') : 'Kosong';
-  const total = cart.reduce((a,b)=>a+b.harga*b.qty,0);
-  cartTotal.innerText = `Total: ${formatRupiah(total)}`;
-  cartTotal.style.display = cart.length?'block':'none';
-  checkoutForm.style.display = cart.length?'block':'none';
-}
+function renderCart(){ cartCount.innerText = cart.reduce((a,b)=>a+b.qty,0); cartItems.innerHTML = cart.length? cart.map(i=>`<div style="display:flex;justify-content:space-between;margin:10px 0"><div>${i.nama}<br>${formatRupiah(i.harga)}</div><div><button onclick="updateQty(${i.id},-1)">-</button> ${i.qty} <button onclick="updateQty(${i.id},1)">+</button></div></div>`).join('') : 'Kosong'; const total = cart.reduce((a,b)=>a+b.harga*b.qty,0); cartTotal.innerText = `Total: ${formatRupiah(total)}`; cartTotal.style.display = cart.length?'block':'none'; checkoutForm.style.display = cart.length?'block':'none'; }
 
 function toggleCart(){ cartModal.classList.toggle('active'); overlay.classList.toggle('active'); }
 function openTracking(){ trackingModal.classList.add('active'); overlay.classList.add('active'); }
 function openAdmin(){ adminModal.classList.add('active'); overlay.classList.add('active'); }
 function closeAll(){ document.querySelectorAll('.modal').forEach(m=>m.classList.remove('active')); overlay.classList.remove('active'); }
-function toggleDana(){ danaUpload.style.display = document.querySelector('input[name="bayar"]:checked').value==='DANA'?'block':'none'; }
 
 function checkout(){
   const ORDER_ID = 'AKM' + Date.now();
-  const data = {
-    id:ORDER_ID, nama:nama.value, nohp:nohp.value, alamat:alamat.value, catatan:catatan.value, 
-    bayar:document.querySelector('input[name="bayar"]:checked').value, bukti:bukti.files[0]?.name||'-',
-    total:cart.reduce((a,b)=>a+b.harga*b.qty,0), status:1, resi:'-', items:cart, tanggal:new Date().toLocaleString()
-  };
+  const data = {id:ORDER_ID, nama:nama.value, nohp:nohp.value, alamat:alamat.value, total:cart.reduce((a,b)=>a+b.harga*b.qty,0), status:1, resi:'-', tanggal:new Date().toLocaleString()};
   if(!data.nama||!data.nohp||!data.alamat) return alert('Isi data!');
-  if(data.bayar==='DANA'&&!data.bukti) return alert('Upload bukti!');
   orders.push(data); localStorage.setItem('orders', JSON.stringify(orders));
-  let pesan = `*PESAN BARU ${ORDER_ID}*%0A${data.nama}%0A${data.nohp}%0A${data.alamat}%0AMetode:${data.bayar}%0ATotal:${formatRupiah(data.total)}`;
-  window.open(`https://wa.me/${WA_ADMIN}?text=${pesan}`,'_blank'); cart=[]; saveCart(); closeAll();
+  window.open(`https://wa.me/${WA_ADMIN}?text=*PESAN BARU ${ORDER_ID}*%0A${data.nama}`,'_blank'); cart=[]; saveCart(); closeAll();
 }
 
-function cekResi(){
-  const o = orders.find(x=>x.id===inputResi.value.toUpperCase());
-  hasilResi.innerHTML = o? `<div class="order-card"><b>${o.id}</b><br>Status: <span class="status-badge status-${o.status}">${['Menunggu','Dikirim','Selesai'][o.status-1]}</span><br>Resi: ${o.resi}</div>` : 'Tidak ditemukan';
-}
+function cekResi(){ const o = orders.find(x=>x.id===inputResi.value.toUpperCase()); hasilResi.innerHTML = o? `<div class="order-card"><b>${o.id}</b><br>Status: ${['Menunggu','Dikirim','Selesai'][o.status-1]}</div>` : 'Tidak ditemukan'; }
 
-// ADMIN
+// ADMIN FIX TOTAL
 function loginAdmin(){
-  if(adminUser.value===adminSetting.user && adminPass.value===adminSetting.pass){
+  adminSetting = getAdmin();
+  const u = adminUser.value.trim();
+  const p = adminPass.value.trim();
+  
+  debugText.innerText = `Cek: ${u}/${p} vs ${adminSetting.user}/${adminSetting.pass}`;
+  
+  if(u === adminSetting.user && p === adminSetting.pass){
     loginAdmin.style.display='none'; dashboardAdmin.style.display='block'; renderOrders();
-  }else alert('Login gagal');
+  }else{
+    alert('Login gagal! Coba klik Force Reset dulu');
+  }
 }
-function logoutAdmin(){ loginAdmin.style.display='block'; dashboardAdmin.style.display='none'; }
+
+function forceReset(){
+  localStorage.setItem('adminSetting', JSON.stringify(DEFAULT_ADMIN));
+  adminSetting = DEFAULT_ADMIN;
+  adminUser.value = 'admin';
+  adminPass.value = '1234';
+  debugText.innerText = 'Password direset ke admin / 1234. Silakan login';
+}
 
 function gantiPassword(){
   if(!newUser.value || !newPass.value) return alert('Isi semua!');
-  adminSetting = {user:newUser.value, pass:newPass.value};
-  localStorage.setItem('adminSetting', JSON.stringify(adminSetting));
+  localStorage.setItem('adminSetting', JSON.stringify({user:newUser.value, pass:newPass.value}));
   alert(`Berhasil! Login baru: ${newUser.value} / ${newPass.value}`);
 }
 
-function renderOrders(){
-  listPesanan.innerHTML = orders.length? [...orders].reverse().map(o=>`
-    <div class="order-card">
-      <b>${o.id}</b> - ${o.tanggal}<br>
-      <b>${o.nama}</b> | ${o.nohp}<br>
-      Total: ${formatRupiah(o.total)} | Bayar: ${o.bayar}<br>
-      Status: 
-      <select onchange="updateStatus('${o.id}',this.value,'${o.nohp}')">
-        <option value="1" ${o.status==1?'selected':''}>Menunggu</option>
-        <option value="2" ${o.status==2?'selected':''}>Dikirim</option>
-        <option value="3" ${o.status==3?'selected':''}>Selesai</option>
-      </select><br>
-      No Resi: <input class="input" value="${o.resi}" onchange="updateResi('${o.id}',this.value)">
-    </div>`).join('') : 'Belum ada pesanan';
-}
+function logoutAdmin(){ loginAdmin.style.display='block'; dashboardAdmin.style.display='none'; }
 
-function updateStatus(id,val,nohp){
-  const o=orders.find(x=>x.id===id); 
-  const statusLama = o.status;
-  o.status=parseInt(val); 
-  localStorage.setItem('orders',JSON.stringify(orders));
-  
-  if(val==2 && statusLama!=2){
-    const pesan = `Halo ${o.nama} 👋%0A%0APesanan kamu ID *${o.id}* sudah *DIKIRIM* 🚚%0ANo Resi: ${o.resi}`;
-    window.open(`https://wa.me/62${o.nohp.substring(1)}?text=${pesan}`,'_blank');
-  }
-  renderOrders();
-}
+function renderOrders(){ listPesanan.innerHTML = orders.length? [...orders].reverse().map(o=>`<div class="order-card"><b>${o.id}</b><br>${o.nama} | ${o.nohp}<br>Total: ${formatRupiah(o.total)}<br>Status: <select onchange="updateStatus('${o.id}',this.value,'${o.nohp}')"><option value="1" ${o.status==1?'selected':''}>Menunggu</option><option value="2" ${o.status==2?'selected':''}>Dikirim</option><option value="3" ${o.status==3?'selected':''}>Selesai</option></select><br>No Resi: <input class="input" value="${o.resi}" onchange="updateResi('${o.id}',this.value)"></div>`).join('') : 'Belum ada pesanan'; }
 
+function updateStatus(id,val,nohp){ const o=orders.find(x=>x.id===id); o.status=parseInt(val); localStorage.setItem('orders',JSON.stringify(orders)); if(val==2){ window.open(`https://wa.me/62${nohp.substring(1)}?text=Halo ${o.nama} pesanan ${o.id} sudah DIKIRIM. Resi: ${o.resi}`,'_blank'); } renderOrders(); }
 function updateResi(id,val){ const o=orders.find(x=>x.id===id); o.resi=val; localStorage.setItem('orders',JSON.stringify(orders)); }
 
-// CEK LINK RAHASIA #admin
-window.addEventListener('load', function(){
-  if(window.location.hash === '#admin'){
-    openAdmin();
-  }
-});
+window.addEventListener('load', function(){ if(window.location.hash === '#admin'){ openAdmin(); } });
 
 renderMenu(); renderCart();
 </script>
