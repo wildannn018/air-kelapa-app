@@ -1,38 +1,12 @@
 {
-  "name": "Air Kelapa Muda Segar",
-  "short_name": "Air Kelapa",
-  "description": "Minuman alami yang menyegarkan dan menyehatkan",
+  "name": "Air Kelapa Muda Pasirmuncng",
+  "short_name": "AirKelapa",
   "start_url": "./index.html",
-  "scope": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#10b981",
-  "orientation": "portrait-primary",
+  "background_color": "#04140c",
+  "theme_color": "#00c16a",
   "icons": [
-    {
-      "src": "icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    }
-  ],
-  "categories": ["shopping", "food"],
-  "screenshots": [
-    {
-      "src": "icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png"}
   ]
 }
